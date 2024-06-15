@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         마신표 제작기 - 디버그용.
 // @namespace    http://tampermonkey.net/
-// @version      2.2.5
+// @version      2.2.6
 // @description  우마무스메 레이스 에뮬레이터로 마신표를 자동으로 만드는 스크립트입니다.
 // @author       Celenort
 // @match        http://localhost:8080/
