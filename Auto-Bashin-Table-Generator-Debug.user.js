@@ -105,7 +105,7 @@ function simulate(once/*, isMulti = false*/) {
         let option = { characterData: true, subtree: true };
 
         //시뮬 종료를 감지할 진행도 바
-        let progress = document.querySelector("#app > div.main-frame > form > div:nth-child(28) > div.el-dialog__wrapper > div > div.el-dialog__body > div");
+        let progress = document.querySelector("#app > div.main-frame > form > div:nth-child(30) > div.el-dialog__wrapper > div > div.el-dialog__body > div");
 
         //감시자 동작 설정
         let observer = new MutationObserver(async (mutations) => {
@@ -138,7 +138,7 @@ function simulate(once/*, isMulti = false*/) {
                     randomPosition_Results[1] = convertToSec(document.querySelector("#app > div.main-frame > div > table:nth-child(2) > tr:nth-child(2) > td:nth-child(5)").innerText);
 
                     //스킬 발동 구간 드롭다운 메뉴를 클릭해서 최하위로 보낸뒤 주소 가져옴.
-                    await document.querySelector("#app > div.main-frame > form > div:nth-child(28) > div:nth-child(5) > div > div").click();
+                    await document.querySelector("#app > div.main-frame > form > div:nth-child(30) > div:nth-child(5) > div > div").click();
                     let randomPosition_Parent = document.querySelector("body > div.el-select-dropdown.el-popper:last-child > div > div > ul");
 
                     for (let i = 2; i < 7; i++) {
@@ -172,8 +172,8 @@ function simulate(once/*, isMulti = false*/) {
         observer.observe(target, option);
 
         (once ?
-         await document.querySelector("#app > div.main-frame > form > div:nth-child(28) > div:nth-child(3) > div > button").click() ://한번 시뮬
-         await document.querySelector("#app > div.main-frame > form > div:nth-child(28) > div:nth-child(1) > div > button").click());//n번 시뮬
+         await document.querySelector("#app > div.main-frame > form > div:nth-child(30) > div:nth-child(3) > div > button").click() ://한번 시뮬
+         await document.querySelector("#app > div.main-frame > form > div:nth-child(30) > div:nth-child(1) > div > button").click());//n번 시뮬
 
         document.querySelector("body > div.v-modal").remove();
     });
@@ -256,7 +256,7 @@ function makeSkillNamesArray(skillElements) {
 
 //전체 진행도 바 생성
 function createProgressBar(current, all) {
-    let original = document.querySelector("#app > div.main-frame > form > div:nth-child(28) > div.el-dialog__wrapper > div > div.el-dialog__body > div");
+    let original = document.querySelector("#app > div.main-frame > form > div:nth-child(30) > div.el-dialog__wrapper > div > div.el-dialog__body > div");
     let newProgressbar = original.cloneNode(true);
     original.after(newProgressbar);
     newProgressbar.before(`(${current}/${all})단계 완료까지`);
@@ -432,15 +432,15 @@ var main = async function (current, all) {
 
     //스킬 DB 불러오기
     //let skillDB_csv = await $.get("https://raw.githubusercontent.com/Ravenclaw5874/Auto-Bashin-Table-Generator/main/%EC%8A%A4%ED%82%ACDB%20-%201%EC%A3%BC%EB%85%84~.csv");
-    let skillDB_csv = await $.get("https://raw.githubusercontent.com/Ravenclaw5874/Auto-Bashin-Table-Generator/main/%EC%8A%A4%ED%82%ACDB%20-%201.5%EC%A3%BC%EB%85%84%20%EC%A0%84.csv");
+    let skillDB_csv = await $.get("https://raw.githubusercontent.com/Celenort/Auto-Bashin-Table-Generator-Debug/main/%EC%8A%A4%ED%82%ACDB%20-%202.5%EC%A3%BC%EB%85%84%20%EC%A0%84.csv");
     const skillDB = $.csv.toObjects(skillDB_csv);
     //logger(skillDB);
 
     //시뮬 횟수 얼만지 가져오기
-    userSimulateCount = Number(document.querySelector("#app > div.main-frame > form > div:nth-child(28) > div:nth-child(2) > div > div > div > input").ariaValueNow);
+    userSimulateCount = Number(document.querySelector("#app > div.main-frame > form > div:nth-child(30) > div:nth-child(2) > div > div > div > input").ariaValueNow);
 
     //전체 난수 고정 선택
-    await document.querySelector("#app > div.main-frame > form > div:nth-child(28) > div:nth-child(4) > div > div > div").click();
+    await document.querySelector("#app > div.main-frame > form > div:nth-child(30) > div:nth-child(4) > div > div > div").click();
     await document.querySelector("body > div.el-select-dropdown.el-popper:last-child > div > div > ul > li:nth-child(3)").click();
     //let skill_invoke_rate_bonus = document.querySelectorAll("body > div.el-select-dropdown.el-popper");
     //await skill_invoke_rate_bonus[skill_invoke_rate_bonus.length-1].querySelector("div > div > ul > li:nth-child(3)").click();
@@ -804,7 +804,7 @@ var main = async function (current, all) {
 
 
     //진행도 바 활성화를 위한 한번 시뮬
-    await document.querySelector("#app > div.main-frame > form > div:nth-child(28) > div:nth-child(3) > div > button").click();
+    await document.querySelector("#app > div.main-frame > form > div:nth-child(30) > div:nth-child(3) > div > button").click();
 
     //전체 진행도 바 생성
     entire_progressbar = createProgressBar(current, all);
@@ -1158,7 +1158,7 @@ var main = async function (current, all) {
     });
 
     //스킬 발동 구간 드롭다운 메뉴를 클릭해서 최하위로 보낸뒤 주소 가져옴.
-    await document.querySelector("#app > div.main-frame > form > div:nth-child(28) > div:nth-child(5) > div > div").click();
+    await document.querySelector("#app > div.main-frame > form > div:nth-child(30) > div:nth-child(5) > div > div").click();
     let randomPosition_Parent = document.querySelector("body > div.el-select-dropdown.el-popper:last-child > div > div > ul");
 
 
