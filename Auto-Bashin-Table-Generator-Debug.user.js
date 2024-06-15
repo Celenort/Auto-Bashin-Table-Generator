@@ -432,7 +432,7 @@ var main = async function (current, all) {
 
     //스킬 DB 불러오기
     //let skillDB_csv = await $.get("https://raw.githubusercontent.com/Ravenclaw5874/Auto-Bashin-Table-Generator/main/%EC%8A%A4%ED%82%ACDB%20-%201%EC%A3%BC%EB%85%84~.csv");
-    let skillDB_csv = await $.get("https://raw.githubusercontent.com/Celenort/Auto-Bashin-Table-Generator-Debug/main/%EC%8A%A4%ED%82%ACDB%20-%202.5%EC%A3%BC%EB%85%84%20%EC%A0%84.csv");
+    let skillDB_csv = await $.get("https://raw.githubusercontent.com/Ravenclaw5874/Auto-Bashin-Table-Generator/main/%EC%8A%A4%ED%82%ACDB%20-%202.5%EC%A3%BC%EB%85%84%20%EC%A0%84.tsv");
     const skillDB = $.csv.toObjects(skillDB_csv);
     //logger(skillDB);
 
@@ -550,19 +550,19 @@ var main = async function (current, all) {
     //계승 포함 전체 일반기들
     let normalSkillElements = {
         '속도': {
-            '레어/상위': getElementByXpath("/html/body/div[1]/div[1]/form/div[21]/div[3]/div[2]/div/div[1]/div").childNodes,
-            '일반/하위': getElementByXpath("/html/body/div[1]/div[1]/form/div[21]/div[3]/div[2]/div/div[2]/div").childNodes,
-            '계승': getElementByXpath("/html/body/div[1]/div[1]/form/div[21]/div[3]/div[2]/div/div[3]/div").childNodes
+            '레어/상위': getElementByXpath("/html/body/div[1]/div[1]/form/div[22]/div[3]/div[2]/div/div[1]/div").childNodes,
+            '일반/하위': getElementByXpath("/html/body/div[1]/div[1]/form/div[22]/div[3]/div[2]/div/div[2]/div").childNodes,
+            '계승': getElementByXpath("/html/body/div[1]/div[1]/form/div[22]/div[3]/div[2]/div/div[3]/div").childNodes
         },
         '가속': {
-            '레어/상위': getElementByXpath("/html/body/div[1]/div[1]/form/div[21]/div[4]/div[2]/div/div[1]/div").childNodes,
-            '일반/하위': getElementByXpath("/html/body/div[1]/div[1]/form/div[21]/div[4]/div[2]/div/div[2]/div").childNodes,
-            '계승': getElementByXpath("/html/body/div[1]/div[1]/form/div[21]/div[4]/div[2]/div/div[3]/div").childNodes
+            '레어/상위': getElementByXpath("/html/body/div[1]/div[1]/form/div[22]/div[4]/div[2]/div/div[1]/div").childNodes,
+            '일반/하위': getElementByXpath("/html/body/div[1]/div[1]/form/div[22]/div[4]/div[2]/div/div[2]/div").childNodes,
+            '계승': getElementByXpath("/html/body/div[1]/div[1]/form/div[22]/div[4]/div[2]/div/div[3]/div").childNodes
         },
         '복합': {
-            '레어/상위': getElementByXpath("/html/body/div[1]/div[1]/form/div[21]/div[5]/div[2]/div/div[1]/div").childNodes,
-            '일반/하위': getElementByXpath("/html/body/div[1]/div[1]/form/div[21]/div[5]/div[2]/div/div[2]/div").childNodes,
-            '계승': getElementByXpath("/html/body/div[1]/div[1]/form/div[21]/div[5]/div[2]/div/div[3]/div").childNodes
+            '레어/상위': getElementByXpath("/html/body/div[1]/div[1]/form/div[22]/div[5]/div[2]/div/div[1]/div").childNodes,
+            '일반/하위': getElementByXpath("/html/body/div[1]/div[1]/form/div[22]/div[5]/div[2]/div/div[2]/div").childNodes,
+            '계승': getElementByXpath("/html/body/div[1]/div[1]/form/div[22]/div[5]/div[2]/div/div[3]/div").childNodes
         }
     };
 
@@ -619,7 +619,7 @@ var main = async function (current, all) {
             },
             '3성': {
                 '요소 배열': [],
-                '이름 배열': makeSkillNamesArray(getElementByXpath("/html/body/div[1]/div[1]/form/div[21]/div[2]/div[2]/div/div[3]/div").childNodes)
+                '이름 배열': makeSkillNamesArray(getElementByXpath("/html/body/div[1]/div[1]/form/div[22]/div[2]/div[2]/div/div[3]/div").childNodes)
             }
         },
         '속가복': {
@@ -863,27 +863,29 @@ var main = async function (current, all) {
     result_Final['녹딱'] = [];
 
     let passiveParents = {
-        '상위': getElementByXpath("/html/body/div[1]/div[1]/form/div[21]/div[1]/div[2]/div/div[1]/div"),
-        '하위': getElementByXpath("/html/body/div[1]/div[1]/form/div[21]/div[1]/div[2]/div/div[2]/div")
+        '상위': getElementByXpath("/html/body/div[1]/div[1]/form/div[22]/div[1]/div[2]/div/div[1]/div/div"),
+        '하위': getElementByXpath("/html/body/div[1]/div[1]/form/div[22]/div[1]/div[2]/div/div[2]/div/div")
     };
     let passiveSkillElements = {
-        '스피드 80': passiveParents['상위'].querySelector("input[value='4']").parentElement, //단독◎
-        '스피드 60': passiveParents['상위'].querySelector("input[value='5']").parentElement, //복병◎
-        '스피드 40': passiveParents['하위'].querySelector("input[value='4']").parentElement, //복병○
-        '스피드 파워 60': passiveParents['상위'].querySelector("input[value='40']").parentElement, //첫 봄바람
-        '파워 60': passiveParents['상위'].querySelector("input[value='22']").parentElement, //대항의식◎
-        '파워 40': passiveParents['하위'].querySelector("input[value='23']").parentElement, //대항의식○
-        '근성 60': passiveParents['상위'].querySelector("input[value='24']").parentElement, //집중마크◎
-        '근성 40': passiveParents['하위'].querySelector("input[value='25']").parentElement, //집중마크○
-        '승부사': passiveParents['상위'].querySelector("input[value='52']").parentElement, //승부사
-        '모험심': passiveParents['하위'].querySelector("input[value='49']").parentElement, //모험심
+        '스피드 80': passiveParents['상위'].querySelector("input[value='200271']").parentElement, //단독◎
+        '스피드 60': passiveParents['상위'].querySelector("input[value='200301']").parentElement, //복병◎
+        '스피드 40': passiveParents['하위'].querySelector("input[value='200302']").parentElement, //복병○
+        '스피드 파워 60': passiveParents['상위'].querySelector("input[value='-200174']").parentElement, //첫 봄바람
+        '파워 60': passiveParents['상위'].querySelector("input[value='200281']").parentElement, //대항의식◎
+        '파워 40': passiveParents['하위'].querySelector("input[value='200282']").parentElement, //대항의식○
+        '근성 60': passiveParents['상위'].querySelector("input[value='200291']").parentElement, //집중마크◎
+        '근성 40': passiveParents['하위'].querySelector("input[value='200292']").parentElement, //집중마크○
+        '승부사': passiveParents['상위'].querySelector("input[value='202441']").parentElement, //승부사
+        '모험심': passiveParents['하위'].querySelector("input[value='202442']").parentElement, //모험심
+        '진수심': passiveParents['하위'].querySelector("input[value='210141']").parentElement, //진수심
+        //Celenort : Added '진수심' element
 
     };
 
-    /*let speed_rare = getElementByXpath('/html/body/div[1]/div[1]/form/div[21]/div[1]/div[2]/div/div[1]/div/label[3]/span');
-        let power_rare = getElementByXpath('/html/body/div[1]/div[1]/form/div[21]/div[1]/div[2]/div/div[1]/div/label[9]/span');
-        let speed_normal = getElementByXpath('/html/body/div[1]/div[1]/form/div[21]/div[1]/div[2]/div/div[2]/div/label[3]/span');
-        let power_normal = getElementByXpath('/html/body/div[1]/div[1]/form/div[21]/div[1]/div[2]/div/div[2]/div/label[11]/span');
+    /*let speed_rare = getElementByXpath('/html/body/div[1]/div[1]/form/div[22]/div[1]/div[2]/div/div[1]/div/label[3]/span');
+        let power_rare = getElementByXpath('/html/body/div[1]/div[1]/form/div[22]/div[1]/div[2]/div/div[1]/div/label[9]/span');
+        let speed_normal = getElementByXpath('/html/body/div[1]/div[1]/form/div[22]/div[1]/div[2]/div/div[2]/div/label[3]/span');
+        let power_normal = getElementByXpath('/html/body/div[1]/div[1]/form/div[22]/div[1]/div[2]/div/div[2]/div/label[11]/span');
 
 
         result_Final['녹딱'][0] = await makeCompleteSkillData(speed_rare, '레어/상위', '녹딱', '스피드◎');
@@ -901,6 +903,9 @@ var main = async function (current, all) {
     result_Final['녹딱'].push(await makeCompleteSkillData(passiveSkillElements['근성 40'], '일반/하위', '녹딱', '근성 40'));
     result_Final['녹딱'].push(await makeCompleteSkillData(passiveSkillElements['승부사'], '레어/상위', '녹딱', '승부사'));
     result_Final['녹딱'].push(await makeCompleteSkillData(passiveSkillElements['모험심'], '일반/하위', '녹딱', '모험심'));
+    result_Final['녹딱'].push(await makeCompleteSkillData(passiveSkillElements['진수심'], '일반/하위', '녹딱', '진수심'));
+    //Celenort : Added '진수심' element
+
 
 
     //logger(result_Final['녹딱']);
@@ -1052,7 +1057,7 @@ var main = async function (current, all) {
     result_Final['고유기'] = [];
 
     //고유기를 선택하지 않았을때만 계산
-    if (!isUniqueSkillSelected) {
+    if (!isUniqueSkillSelected) { //to reduce time removed !(고유기 계산은 잘되니까 X)
         result_Final['고유기'] = [
             ...await makeCompleteSkillDatas(notHeal_unique_Skill_Elements, '고유')
         ];
@@ -1127,26 +1132,27 @@ var main = async function (current, all) {
 
     //중반 회복기 2개 / 777 / U=ma2 / 두근구든 / 하굣길(추입) / 말괄량이(도주) / 패시브 6개 / a-star*
     let triggerParents = {
-        '일반힐': getElementByXpath("/html/body/div[1]/div[1]/form/div[21]/div[2]/div[2]/div/div[2]/div"),
-        '계승힐': getElementByXpath("/html/body/div[1]/div[1]/form/div[21]/div[2]/div[2]/div/div[3]/div"),
-        '계승복합힐': getElementByXpath("/html/body/div[1]/div[1]/form/div[21]/div[5]/div[2]/div/div[3]/div"),
-        '상위패시브': getElementByXpath("/html/body/div[1]/div[1]/form/div[21]/div[1]/div[2]/div/div[1]/div"),
-        '하위패시브': getElementByXpath("/html/body/div[1]/div[1]/form/div[21]/div[1]/div[2]/div/div[2]/div")
+        '일반힐': getElementByXpath("/html/body/div[1]/div[1]/form/div[22]/div[2]/div[2]/div/div[2]/div"),
+        '계승힐': getElementByXpath("/html/body/div[1]/div[1]/form/div[22]/div[2]/div[2]/div/div[3]/div"),
+        '계승복합힐': getElementByXpath("/html/body/div[1]/div[1]/form/div[22]/div[5]/div[2]/div/div[3]/div"),
+        '상위패시브': getElementByXpath("/html/body/div[1]/div[1]/form/div[22]/div[1]/div[2]/div/div[1]/div"),
+        '하위패시브': getElementByXpath("/html/body/div[1]/div[1]/form/div[22]/div[1]/div[2]/div/div[2]/div")
     };
     let triggerElements = {
-        '중반힐1': triggerParents['일반힐'].querySelector("input[value='20']").parentElement, //페이스 킵
-        '중반힐2': triggerParents['일반힐'].querySelector("input[value='21']").parentElement, //마군 속 냉정
-        '중반힐3': triggerParents['일반힐'].querySelector("input[value='23']").parentElement, //아오하루 점화 체
-        '코너회복': triggerParents['일반힐'].querySelector("input[value='0']").parentElement,
-        '777': triggerParents['일반힐'].querySelector("input[value='3']").parentElement,
-        'uma2': triggerParents['계승복합힐'].querySelector("input[value='9']").parentElement,
-        '두근두근': triggerParents['계승힐'].querySelector("input[value='2']").parentElement,
-        '날씨': triggerParents['하위패시브'].querySelector("input[value='24']").parentElement,
-        '집중마크': triggerParents['하위패시브'].querySelector("input[value='25']").parentElement
+        '중반힐1': triggerParents['일반힐'].querySelector("input[value='200472']").parentElement, //페이스 킵
+        '중반힐2': triggerParents['일반힐'].querySelector("input[value='200482']").parentElement, //마군 속 냉정
+        '중반힐3': triggerParents['일반힐'].querySelector("input[value='210022']").parentElement, //아오하루 점화 체
+        '코너회복': triggerParents['일반힐'].querySelector("input[value='200352']").parentElement,
+        '777': triggerParents['일반힐'].querySelector("input[value='201571']").parentElement,
+        'uma2': triggerParents['계승복합힐'].querySelector("input[value='900321']").parentElement,
+        '두근두근': triggerParents['계승힐'].querySelector("input[value='900521']").parentElement,
+        '날씨': triggerParents['하위패시브'].querySelector("input[value='200292']").parentElement,
+        '집중마크': triggerParents['하위패시브'].querySelector("input[value='200292']").parentElement
     };
-    if (userSelected['각질'] === '추입') { triggerElements['하굣길'] = triggerParents['일반힐'].querySelector("input[value='5']").parentElement; }
-    if (userSelected['각질'] === '도주') { triggerElements['기세로'] = triggerParents['일반힐'].querySelector("input[value='6']").parentElement; }
-    if (userSelected['마장'] === '더트') { triggerElements['astar'] = triggerParents['계승복합힐'].querySelector("input[value='11']").parentElement; }
+    // Celenort: 예외처리 케이스로 일단은 비활성화. 다 고치기 귀찮음.
+    if (userSelected['각질'] === '추입') { triggerElements['하굣길'] = triggerParents['일반힐'].querySelector("input[value='201482']").parentElement; }
+    if (userSelected['각질'] === '도주') { triggerElements['기세로'] = triggerParents['일반힐'].querySelector("input[value='201282']").parentElement; }
+    if (userSelected['마장'] === '더트') { triggerElements['astar'] = triggerParents['계승복합힐'].querySelector("input[value='910461']").parentElement; }
 
     triggerParents['상위패시브'].querySelectorAll("label").forEach((e) => {
         if (e.innerText.includes('근간거리◎')) { triggerElements['상위근간'] = e; }
